@@ -293,6 +293,106 @@ public class SuperMarcherController implements Initializable {
 				alert.showAndWait();
 			}
 		}
+	
+	public void saveSuperMarcherDataToFile(File file) {
+		try {
+			JAXBContext context = JAXBContext.newInstance(SuperMarcherListWrapper.class);
+			Marshaller m = context.createMarshaller();
+			m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+			SuperMarcherListWrapper wrapper = new SuperMarcherListWrapper();
+			wrapper.setSuperMarchers(SuperMarcherData);
+
+			m.marshal(wrapper, file);
+
+			setSuperMarcherFilePath(file);
+
+			Stage pStage=(Stage) supermarcheTable.getScene().getWindow();
+			pStage.setTitle(file.getName());
+
+
+
+		}catch (Exception e) {
+
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Erreur");
+			alert.setHeaderText("Donnés non sauvegardées");
+			alert.setContentText(" Les données ne pouvaient pas etre sauvegardées dans le fichier:\n" + file.getPath());
+			alert.showAndWait();
+
+
+		}
+}
+
+
+// Start a new file
+@FXML
+private void handleNew() 
+	{
+		supermarcherData().clear();
+		setSuperMarcherFilePath(null);
+
+	}
+
+@FXML
+private void handleOpen()
+	{
+		FileChooser fileChooser = new FileChooser();
+
+		FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter( "XML files (*.xml)", "*.xml");
+		fileChooser.getExtensionFilters().add(extFilter);
+
+		File file = fileChooser.showOpenDialog(null);
+		if (file != null) {
+			loadSuperMarcherDataFromFile(file);
+
+		}
+
+	}
+
+
+@FXML
+private void handleSave()
+	{
+		File supermarcherFile = getSuperMarcherFilePath();
+		if (supermarcherFile != null) {
+			saveSuperMarcherDataToFile(supermarcherFile);
+		} else {
+			handleSaveAs();
+		}
+	}
+
+
+@FXML
+private void handleSaveAs() {
+		FileChooser fileChooser = new FileChooser();
+
+		FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter( "XML files (*.xml)", "*.xml");
+		fileChooser.getExtensionFilters().add(extFilter);
+
+		File file = fileChooser.showSaveDialog(null);
+		if (file != null) {
+			if (!file.getPath().endsWith(".xml")) {
+				file = new File(file.getPath() + ".xml" );
+			}
+			saveSuperMarcherDataToFile(file);
+		}
+
+}
+
+
+@FXML
+public void verifNum()
+	{
+		txtQuantity.textProperty().addListener((observable,oldValue,newValue)->
+			{
+				if(!newValue.matches("^[0-9](\\.[0-9]+)?$"))
+				{
+					txtQuantity.setText(newValue.replaceAll("[^\\d*\\.]", ""));
+				}
+			});
+	}
+
+
 
 	
 	
