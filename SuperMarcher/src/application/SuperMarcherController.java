@@ -300,7 +300,7 @@ public class SuperMarcherController implements Initializable {
 			Marshaller m = context.createMarshaller();
 			m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 			SuperMarcherListWrapper wrapper = new SuperMarcherListWrapper();
-			wrapper.setSuperMarchers(SuperMarcherData);
+			wrapper.setSuperMarcher(supermarcherData);
 
 			m.marshal(wrapper, file);
 

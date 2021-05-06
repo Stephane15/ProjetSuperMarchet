@@ -15,7 +15,7 @@ public class SuperMarcherListWrapper
 		{
 				return getSuperMarchers();
 		}
-		public void setEtudiants(List<SuperMarcher> etudiants)
+		public void setSuperMarcher(List<SuperMarcher> SuperMArchers)
 		{
 				this.SuperMarcher=SuperMarcher;
 		}
