@@ -276,7 +276,7 @@ public class SuperMarcherController implements Initializable {
 				JAXBContext context =  JAXBContext.newInstance(SuperMarcherListWrapper.class);
 				Unmarshaller um = context.createUnmarshaller();
 
-				SuperMarcherListWrapper wrapper = (SuperMArcherListWrapper) um.unmarshal(file);
+				SuperMarcherListWrapper wrapper = (SuperMarcherListWrapper) um.unmarshal(file);
 				supermarcherData.clear();
 				supermarcherData.addAll(wrapper.getSuperMarchers());
 				setSuperMarcherFilePath(file);

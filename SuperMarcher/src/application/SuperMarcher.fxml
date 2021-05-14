@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SuperMarcheController">
+<AnchorPane prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SuperMarcherController">
    <children>
       <Text layoutX="206.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste d'épicerie" textAlignment="CENTER" wrappingWidth="187.21630859375">
          <font>
@@ -61,11 +61,33 @@
       </GridPane>
       <HBox layoutX="146.0" layoutY="443.0" spacing="11.0">
          <children>
-            <Button fx:id="btnAjouter" layoutX="95.0" layoutY="429.0" mnemonicParsing="false" text="Ajouter" />
-            <Button fx:id="btnModifier" layoutX="180.0" layoutY="429.0" mnemonicParsing="false" text="Modifier" />
-            <Button fx:id="btnEffacer" layoutX="273.0" layoutY="429.0" mnemonicParsing="false" text="Effacer" />
-            <Button fx:id="btnClear" layoutX="366.0" layoutY="429.0" mnemonicParsing="false" text="Recommencer" />
+            <Button fx:id="btnAjouter" layoutX="95.0" layoutY="429.0" mnemonicParsing="false" onMouseClicked="#ajouter" text="Ajouter" />
+            <Button fx:id="btnModifier" layoutX="180.0" layoutY="429.0" mnemonicParsing="false" onMouseClicked="#updateSuperMarcher" text="Modifier" />
+            <Button fx:id="btnEffacer" layoutX="273.0" layoutY="429.0" mnemonicParsing="false" onMouseClicked="#deleteSuperMarcher" text="Effacer" />
+            <Button fx:id="btnClear" layoutX="366.0" layoutY="429.0" mnemonicParsing="false" onMouseClicked="#clearFields" text="Recommencer" />
          </children>
       </HBox>
+      <MenuBar layoutY="1.0" prefHeight="29.0" prefWidth="153.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+                  <MenuItem fx:id="handleNew" mnemonicParsing="false" text="New" />
+              <MenuItem fx:id="handleOpen" mnemonicParsing="false" text="Open" />
+                  <MenuItem fx:id="handleSave" mnemonicParsing="false" text="Save" />
+                  <MenuItem fx:id="handleSaveAs" mnemonicParsing="false" text="SaveAs" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
    </children>
 </AnchorPane>
